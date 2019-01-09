@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+        background-image: url(weather.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+}
+p {
+    font-size: 50px;
+    color: #7b38d8;
+}
+.button {
+    display: inline-block;
+    background-color: #7b38d8;
+    border-radius: 20px;
+    border:none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+    height: 150px;
+  }
+  .container .froms {
+      display: flex;
+      flex-direction: row;
+      margin: 0;
+      padding: 0;
+  }
+  .container #city {
+      width: 550px;
+      height: 150px;
+      font-size: 28px;
+      border-radius: 20px;
+     padding: 25px;
+     color: #7b38d8;
+  }
+  .container #city:focus {
+    border: 2px solid #7b38d8;
+  }
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }

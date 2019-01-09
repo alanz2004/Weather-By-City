@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Weather API</title>
+        <meta charset="UTF-8">
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="froms">
+                    <input type="text" id="city" placeholder="Enter The City Name For The Weather...">
+                    <button class="button" style="vertical-align:middle"id="btn"><span>Whats the Weather?&#8594;</span></button>
+            </div>
+            <p id="main"></p>
+            <p id="temp"></p>
+            <p id="des"></p>
+            <p id="humidity"></p>
+            <p id="pressure"></p>
+        </div>
+        <script>
+          var $city = $('#city');
+          var $main = $('#main');
+          var $temp = $('#temp');
+          var $des = $('#des');
+          var $submitButton = $('#btn');
+          var $humidity = $('#humidity');
+          var $pressure = $('#pressure');
+          console.log(`http://api.openweathermap.org/data/2.5/weather?q=${$city.val()}&APPID=your_api`);
+          console.log($submitButton);
+          console.log($main,$temp,$des);
+          console.log($temp);
+          console.log($city.val());
+          $submitButton.click(function(){
+              weatherAPI = `http://api.openweathermap.org/data/2.5/weather?q=${$city.val()}&APPID=your_api`;
+              console.log(weatherAPI);
+            $.ajax({
+              url: weatherAPI,
+              success: function(data){
+                  console.log(data.weather[0].main);
+                  console.log(Math.floor(data.main.temp));
+                  console.log(data.main.temp);
+                  console.log(data.weather[0].description);
+                  console.log(data);
+                  $main.text('The main: ' + data.weather[0].main);
+                  $temp.text('The Temperature: ' + Math.floor(data.main.temp));
+                  $des.text('Description: ' + capitalize(data.weather[0].description));
+                  $humidity.text('Humidity: ' + data.main.humidity);
+                  $pressure.text('Pressuer: ' + data.main.pressure);
+              },
+              error: function(){
+                  console.error('Error has accoured');
+                  console.log(weatherAPI);
+              },
+              type: 'GET'
+             });
+          });
+         function capitalize(text){
+            text = text.toLowerCase()
+                   .split(' ')
+                   .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                   .join(' ');
+
+            return text;       
+         }
+        </script>
+    </body>
+</html>
